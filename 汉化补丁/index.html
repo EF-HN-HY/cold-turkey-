@@ -1,0 +1,1059 @@
+<html>
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>Cold Turkey</title>
+<meta http-equiv="X-UA-Compatible" content="IE=10">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<meta content="Cold Turkey Configuration" name="description"/>
+<meta content="Cold Turkey" name="author"/>
+
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="assets/global/fonts/fonts.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+
+<!-- BEGIN PAGE STYLES -->
+<!-- link href="assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/ -->
+<link rel='stylesheet' type='text/css' href='assets/global/plugins/bootstrap-switch/css/bootstrap-switch.css' />
+<link href="assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<!-- END PAGE STYLES -->
+
+<!-- BEGIN CALENDAR STYLES -->
+<link rel='stylesheet' type='text/css' href='assets/calendar/css/reset.css' />
+<!--link rel='stylesheet' type='text/css' href='assets/calendar/css/jquery-ui-1.8.11.custom.css' /-->
+<!-- DOC: Above version of jquery-ui causes nasty modal blocking bug -->
+<link rel='stylesheet' type='text/css' href='assets/calendar/css/jquery.weekcalendar.css' />
+<link rel='stylesheet' type='text/css' href='assets/calendar/css/demo.css' />
+<link rel='stylesheet' type='text/css' href='assets/calendar/css/default.css' />
+<!-- END CALENDAR STYLES -->
+
+<!-- BEGIN THEME STYLES -->
+<link href="assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="assets/admin/layout2/css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="assets/admin/layout2/css/themes/grey.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="assets/admin/layout2/css/custom.css" rel="stylesheet" type="text/css"/>
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body class="page-boxed page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-sidebar-closed-hide-logo">
+<!-- BEGIN HEADER -->
+<div id="CT_titleBar" class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner container">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<img src="assets/admin/layout2/img/logo-default.png" alt="Cold Turkey" class="logo-default" draggable="false"/>
+			</a>
+			<div class="menu-toggler sidebar-toggler hide">
+				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+			</div>
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN PAGE TOP -->
+		<div class="page-top">
+			<!-- BEGIN TOP NAVIGATION MENU -->
+			<div class="top-menu">
+				<ul class="nav navbar-nav pull-right">					
+					<!-- BEGIN USER LOGIN DROPDOWN -->
+					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+					<li class="dropdown dropdown-user">
+						<a class="dropdown-toggle">
+						<img alt="Profile" class="img-circle" src="assets/dynamic/profilePicture.jpg" draggable="false" />
+						<span id="CT_profileName" class="username"></span>
+						</a>
+					</li>
+					<!-- END USER LOGIN DROPDOWN -->
+					<!-- BEGIN USER LOGIN DROPDOWN -->
+					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+	                <li class="dropdown dropdown-extended quick-sidebar-toggler">
+						<i id="CT_infoButton" class="fa fa-info-circle"></i>
+	                </li>
+	                <li class="dropdown dropdown-extended quick-sidebar-toggler">
+						<i id="CT_minButton" class="fa fa-minus-square"></i>
+	                </li>
+					<li id="CT_maxButtonContainer" class="dropdown dropdown-extended quick-sidebar-toggler">
+	                	<i id="CT_maxButton" class="fa fa-caret-square-o-up"></i>
+	                </li>
+					<li class="dropdown dropdown-extended quick-sidebar-toggler">
+	                	<i id="CT_quitButton" class="fa fa-times"></i>
+	                </li>
+					<!-- END USER LOGIN DROPDOWN -->
+				</ul>
+			</div>
+			<!-- END TOP NAVIGATION MENU -->
+		</div>
+		<!-- END PAGE TOP -->
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="container">
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar-wrapper">
+			<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+			<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+			<div class="page-sidebar navbar-collapse collapse">
+				<!-- BEGIN SIDEBAR MENU -->
+				<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+				<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+				<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+				<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+				<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+				<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="false" data-slide-speed="200">
+					<li id="page-dashboard" class="start active ">
+						<a href="#">
+						<i class="fa fa-home"></i>
+						<span class="title">仪表盘</span>
+						<span class="selected"></span>
+						</a>
+					</li>
+					<li id="page-lists">
+						<a href="#">
+						<i class="fa fa-times"></i>
+						<span class="title">屏蔽名单</span>
+						<!-- span class="arrow "></span -->
+						</a>
+						<!-- ul class="sub-menu">
+							<li>
+								<a href="ecommerce_index.html">
+								<i class="icon-home"></i>
+								Dashboard</a>
+							</li>
+							<li>
+								<a href="ecommerce_orders.html">
+								<i class="icon-basket"></i>
+								Orders</a>
+							</li>
+							<li>
+								<a href="ecommerce_orders_view.html">
+								<i class="icon-tag"></i>
+								Order View</a>
+							</li>
+							<li>
+								<a href="ecommerce_products.html">
+								<i class="icon-handbag"></i>
+								Products</a>
+							</li>
+							<li>
+								<a href="ecommerce_products_edit.html">
+								<i class="icon-pencil"></i>
+								Product Edit</a>
+							</li>
+						</ul-->
+					</li>
+					<li id="page-timers">
+						<a href="#">
+						<i class="fa fa-clock-o"></i>
+						<span class="title">计时器</span>
+						</a>						
+					</li>
+					<li id="page-schedule">
+						<a href="#">
+						<i class="fa fa-calendar"></i>
+						<span class="title">时间调度</span>
+						</a>						
+					</li>
+					<li id="page-advanced">
+						<a href="#">
+						<i class="fa fa-magic"></i>
+						<span class="title">高级</span>
+						</a>						
+					</li>
+					<li id="page-settings">
+						<a href="#">
+						<i class="fa fa-cogs"></i>
+						<span class="title">设置</span>
+						</a>						
+					</li>
+					<li id="page-upgrade" class="upgrade last ">
+						<a href="#">
+						<i class="fa fa-star"></i>
+						<span class="title">升级</span>
+						</a>						
+					</li>
+				</ul>
+				<!-- END SIDEBAR MENU -->
+			</div>
+		</div>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+		
+			<div id="page-dashboard-content" class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 id="CT_profileName2" class="page-title"></h3>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN DASHBOARD STATS -->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="dashboard-stat blue">
+							<div class="visual">
+								<i class="fa fa-trophy"></i>
+							</div>
+							<div class="details">
+								<div class="number">
+									<span id="var-dashboard-minutes"> 0</span>
+								</div>
+								<div class="desc">
+									 分钟保存一次
+								</div>
+							</div>
+							<a id="shareMinutes" class="more" target="_blank" href="http://www.facebook.com/dialog/feed?app_id=135689646498663&link=http://getcoldturkey.com&picture=http://getcoldturkey.com/images/logo-fb.png&name=Get%20more%20free%20time!&caption=Fewer%20distractions,%20more%20free%20time.&description=Use%20Cold%20Turkey%20to%20temporarily%20save%20yourself%20from%20online%20distractions!&message=Save%20time%20using%20Cold%20Turkey!&redirect_uri=http://getcoldturkey.com/share/">
+							分享 <i class="m-icon-swapright m-icon-white"></i></a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="dashboard-stat blue">
+							<div class="visual">
+								<i class="fa fa-trophy"></i>
+							</div>
+							<div class="details">
+								<div class="number">
+									<span id="var-dashboard-total"> 0</span>
+								</div>
+								<div class="desc">
+									 高效时间
+								</div>
+							</div>
+							<a id="shareBlocked" class="more" target="_blank" href="http://www.facebook.com/dialog/feed?app_id=135689646498663&link=http://getcoldturkey.com&picture=http://getcoldturkey.com/images/logo-fb.png&name=Cold%20Turkey&caption=Fewer%20distractions,%20more%20free%20time.&description=Cold%20Turkey%20saved%20me%20from%20wasting%20time%20this%20week!%20Use%20Cold%20Turkey%20to%20temporarily%20save%20yourself%20from%20online%20distractions!&message=Cold%20Turkey%20saved%20me%20from%20wasting%20time%20this%20week!&redirect_uri=http://getcoldturkey.com/share/">
+							分享 <i class="m-icon-swapright m-icon-white"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- END DASHBOARD STATS -->
+				<div class="clearfix">
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<!-- BEGIN PORTLET-->
+						<div class="portlet light bordered">
+							<div class="portlet-title">
+								<div class="caption">
+									 
+									<span class="caption-subject font-green-sharp bold uppercase">高效时间</span>
+									<span class="caption-helper">每周统计</span>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div id="site_statistics_loading">
+									<img src="assets/admin/layout2/img/loading.gif" alt="loading"/>
+								</div>
+								<div id="site_statistics_content" class="display-none">
+									<div id="site_statistics" class="chart">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END PORTLET-->
+					</div>
+					<div id="update_needed">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>有可用的更新！您想现在下载它？</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+				</div>				
+			</div>
+
+			<div id="page-lists-content" class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">屏蔽名单</h3>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN DASHBOARD STATS -->
+				<div class="row">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-default" onclick="editList();"><i class="fa fa-plus"></i>&nbsp;&nbsp;添加一个新的屏蔽名单...</button><br>
+						<p> &nbsp; </p>
+					</div>					
+					<div id="list_edit_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_edit_container -->
+								<div class="form-group center">
+									<input id="var-list-name" type="text" maxlength="19" placeholder="List Name">
+								</div>
+								<hr>
+								<div class="portlet-title tabbable-line">
+									<ul class="nav nav-tabs">
+										<li class="active">
+											<a id="var-edit-tab0" href="#list_tab0" data-toggle="tab" aria-expanded="true"> 网站 </a>
+										</li>
+										<li class="">
+											<a id="var-edit-tab1" href="#list_tab1" data-toggle="tab" aria-expanded="false"> 应用 </a>
+										</li>
+										<li class="">
+											<a id="var-edit-tab2" href="#list_tab2" data-toggle="tab" aria-expanded="false"> 例外 </a>
+										</li>
+									</ul>
+								</div>
+								<p>&nbsp;</p>
+								<div class="portlet-body">
+									<div class="tab-content">
+										<iframe id="download-frame" style="visibility:hidden;position:absolute;top:0;left:0;"></iframe>
+										<input id="import-frame" type="file" accept=".txt" style="visibility:hidden;position:absolute;top:0;left:0;">
+										<div class="tab-pane active" id="list_tab0">
+											<div class="form-body">
+												<div class="form-group center">
+													<input id="var-list-site-add" type="text" placeholder="Add URL">
+													<select id="var-list-sites" size=9 multiple></select>
+												</div>
+												<div class="btn-group">
+													<button class="btn-no-margin" type="button" onclick="removeEntry.apply(this, [0]);"> 移除	</button>
+												</div>
+												<div class="btn-group">
+													<button class="dropdown-toggle btn-no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> 列表
+														<i class="fa fa-angle-down"></i>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li>
+															<a class="import-list" href="javascript:;"> 从文件导入...</a>
+														</li>
+														<li class="dropdown-submenu">
+															<a href="javascript:;"> 导入列表 </a>
+															<ul class="dropdown-menu" style="">
+																<li>
+																	<a href="javascript:;" onclick="addList.apply(this, [0, 0]);"> 吸引网站 </a>
+																</li>
+																<li>
+																	<a href="javascript:;" onclick="addList.apply(this, [1, 0]);"> 成人网站 </a>
+																</li>
+																<li>
+																	<a href="javascript:;" onclick="addList.apply(this, [2, 0]);"> 代理网站 </a>
+																</li>
+															</ul>
+														</li>
+														<li class="divider"> </li>
+														<li>
+															<a href="javascript:;" onclick="exportList.apply(this, [0]);"> 导出文本文件...</a>
+														</li>
+													</ul>
+												</div>
+												<div class="btn-group">
+													<button class="dropdown-toggle btn-no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> 选择
+														<i class="fa fa-angle-down"></i>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li>
+															<a href="javascript:;" onclick="selectList.apply(this, [0]);"> 全选 </a>
+														</li>
+														<li>
+															<a href="javascript:;" onclick="deselectList.apply(this, [0]);"> 取消全选 </a>
+														</li>
+														<li class="divider"> </li>
+														<li>
+															<a href="javascript:;" onclick="clearList.apply(this, [0]);"> 清理列表 </a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="list_tab1">
+											<div class="form-body">
+												<div class="form-group center">
+													<input id="var-list-app-add-button" type="file" accept=".exe" style="visibility:hidden;position:absolute;top:0;left:0;">
+													<input id="var-list-app-add-text" type="text" placeholder="Browse...">
+													<select id="var-list-apps" size=9 multiple></select>
+												</div>
+												<div class="btn-group">
+													<button class="btn-no-margin" type="button" onclick="removeEntry.apply(this, [1]);"> 移除	</button>
+												</div>
+												<div class="btn-group">
+													<button class="dropdown-toggle btn-no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> 列表
+														<i class="fa fa-angle-down"></i>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li>
+															<a class="import-list" href="javascript:;"> 从文件导入...</a>
+														</li>
+														<li class="divider"> </li>
+														<li>
+															<a href="javascript:;" onclick="exportList.apply(this, [1]);"> 导出文本文件...</a>
+														</li>
+													</ul>
+												</div>
+												<div class="btn-group">
+													<button class="dropdown-toggle btn-no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> 选择
+														<i class="fa fa-angle-down"></i>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li>
+															<a href="javascript:;" onclick="selectList.apply(this, [1]);"> 全选 </a>
+														</li>
+														<li>
+															<a href="javascript:;" onclick="deselectList.apply(this, [1]);"> 取消全选 </a>
+														</li>
+														<li class="divider"> </li>
+														<li>
+															<a href="javascript:;" onclick="clearList.apply(this, [1]);"> 清空列表</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="list_tab2">
+											<div class="form-body">
+												<div class="form-group center">
+													<input id="var-list-except-add" type="text" placeholder="Add URL">
+													<select id="var-list-excepts" size=9 multiple></select>
+												</div>
+												<div class="btn-group">
+													<button class="btn-no-margin" type="button" onclick="removeEntry.apply(this, [2]);"> 移除	</button>
+												</div>
+												<div class="btn-group">
+													<button class="dropdown-toggle btn-no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> 列表
+														<i class="fa fa-angle-down"></i>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li>
+															<a class="import-list" href="javascript:;"> 从文件导入...</a>
+														</li>
+														<li class="dropdown-submenu">
+															<a href="javascript:;"> 导入列表 </a>
+															<ul class="dropdown-menu" style="">
+																<li>
+																	<a href="javascript:;" onclick="addList.apply(this, [0, 2]);"> 吸引网站 </a>
+																</li>
+																<li>
+																	<a href="javascript:;" onclick="addList.apply(this, [1, 2]);"> 成人网站 </a>
+																</li>
+																<li>
+																	<a href="javascript:;" onclick="addList.apply(this, [2, 2]);"> 代理网站 </a>
+																</li>
+															</ul>
+														</li>
+														<li class="divider"> </li>
+														<li>
+															<a href="javascript:;" onclick="exportList.apply(this, [2]);"> 导出文本文件...</a>
+														</li>
+													</ul>
+												</div>
+												<div class="btn-group">
+													<button class="dropdown-toggle btn-no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> 选择
+														<i class="fa fa-angle-down"></i>
+													</button>
+													<ul class="dropdown-menu" role="menu">
+														<li>
+															<a href="javascript:;" onclick="selectList.apply(this, [2]);"> 全选</a>
+														</li>
+														<li>
+															<a href="javascript:;" onclick="deselectList.apply(this, [2]);"> 取消全选</a>
+														</li>
+														<li class="divider"> </li>
+														<li>
+															<a href="javascript:;" onclick="clearList.apply(this, [2]);"> 清空列表</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="list_delete_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>你确定要删除这个名单连同它的网站，应用程序和例外吗？</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="list_delete_error_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>您不能更改或删除名单，目前名单正在使用中。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="list_delete_schedule_error_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>这个名单是在由调度使用。请删除使用该列表中的任何预定条目，然后再试一次。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="list_name_schedule_error_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>而它的正在使用的调度程序不能重命名列表。请删除使用该列表中的任何预定条目，然后再试一次。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="list_name_error_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>此块列表名称是应用程序预订或已在使用。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="notexe_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>您选择的文件不是一个可执行程序，或Cold Turkey必需的，因此没有添加它。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="list_full_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>你已经添加到，可以处理列表的最大数量。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="list_upgrade">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>不幸的是阻止应用程序，添加网站例外和使用通配符只能由高级用户使用。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+				</div>
+				<div class="row">
+					<span id="var-lists"></span>				
+				</div>
+			</div>
+						
+			<div id="page-timers-content" class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">计时器</h3>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN DASHBOARD STATS -->
+				<div class="row">
+					<div class="col-md-12">
+                        <!-- BEGIN PORTLET-->
+                        <div class="portlet light form-fit bordered">
+                            <div class="portlet-body form">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal">
+                                    <div class="form-body">
+                                        <div class="form-group subtitle center">
+											<div class="col-md-3">
+												<span class="font-green-sharp">名单</span>
+                                            </div>
+											<div class="col-md-4">
+												<span class="font-green-sharp">截止时间</span>
+                                            </div>
+											<div class="col-md-2">
+												<span class="font-green-sharp">休息定时</span>
+                                            </div>
+											<div class="col-md-3">
+												<span class="font-green-sharp">开/关</span>
+                                            </div>
+										</div>
+										<span id="var-timers"></span>
+									</div>
+                                </form>
+                            </div>
+                        </div>
+					</div>
+					<div id="timer_extend_date">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>你确定要延长这个时间到:<br><span id="var-timer-extend"></span>?</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="timer_enable">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>你确定要开始 "<span id="var-timer-enable-name"></span>" 工作 <span id="var-timer-enable-time"></span>? 
+									<span id="var-timer-enable-warning" style="display: none;">这个动作不能逆转.</span></p>
+									<p><label><input id="var-timer-enable-share" type="checkbox" name="share" value="share">&nbsp;&nbsp;分享朋友关注</label></p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="timer_invalid">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>选择定时器的结束日期未设置或者没有任何意义！</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+				</div>
+			</div>
+			
+			<div id="page-schedule-content" class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">时间调度</h3>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN DASHBOARD STATS -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<div id='calendar'></div>
+								<div id="event_edit_container">
+									<form>
+										<input type="hidden" />
+										<ul>
+											<li>
+												<label for="start">开始时间: </label><select name="start"><option value="">选择开始时间</option></select>
+											</li>
+											<li>
+												<label for="end">结束时间: </label><select name="end"><option value="">选择结束时间</option></select>
+											</li>
+											<li>
+												<label for="title">屏蔽组: </label>
+												<select id="scheduler-titles" name="title">
+													<option value="Social Media">Social Media</option>
+												</select>
+											</li>
+											<li>
+												<label for="pomodoro">休息定时: </label>
+												<select id="scheduler-pomodoro" name="pomodoro">
+													<option value="null">None</option>
+													<option value="A">A</option>
+													<option value="B">B</option>
+													<option value="C">C</option>
+												</select> 
+											</li>
+										</ul>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="schedule_delete_error_container">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>因为时间调度目前被锁定，不能改变时间调度的任何内容！</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="schedule_denied_modal">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>您需要升级到Pro使用这些功能。你想立即升级</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+				</div>
+			</div>
+			
+			<div id="page-advanced-content" class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">高级功能</h3>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN DASHBOARD STATS -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="portlet light bordered">
+                            <div class="portlet-title tabbable-line">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#portlet_tab3" data-toggle="tab" aria-expanded="true"> 休息定时 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#portlet_tab4" data-toggle="tab" aria-expanded="false"> 锁定 TurKey</a>
+                                    </li>
+									<!--li class="dropdown">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> Pomodoro Timers
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+										<ul class="dropdown-menu" role="menu">
+											<li>
+												<a href="#portlet_tab4_1" tabindex="-1" data-toggle="tab"> Pomodoro A </a>
+											</li>
+											<li>
+												<a href="#portlet_tab4_2" tabindex="-1" data-toggle="tab"> Pomodoro B </a>
+											</li>
+											<li>
+												<a href="#portlet_tab4_3" tabindex="-1" data-toggle="tab"> Pomodoro C </a>
+											</li>
+										</ul>
+                                    </li -->
+                                </ul>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="portlet_tab3">
+										<div id="portlet_tab3_note" class="note note-block note-info fade in">
+											<button type="button" class="close" onclick="$('#portlet_tab3_note').hide();"></button>
+											<h4 class="note-heading">什么是休息定时？</h4>
+											<p> 设置休息定时，您可以在工作时间规定量后（通常是短期）休息。注意，此功能需要双方的工作，设置为0以外发挥作用。 </p>
+										</div>
+										<div class="form-body">
+											<div class="portlet-body form">
+												<!-- BEGIN FORM-->
+												<form action="#" class="form-horizontal">
+													<div class="form-body">
+														<div class="form-group subtitle center">
+															<div class="col-md-4">
+																<span class="font-green-sharp">休息方案</span>
+															</div>
+															<div class="col-md-4">
+																<span class="font-green-sharp">工作 (分钟)</span>
+															</div>
+															<div class="col-md-4">
+																<span class="font-green-sharp">休息 (分钟)</span>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-md-4 center">休息方案 A</label>
+															<div class="col-md-4 center">
+																<input id="pomodoroAWork" class="spinner" name="value">
+															</div>
+															<div class="col-md-4 center">
+																<input id="pomodoroAPlay" class="spinner" name="value">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-md-4 center">休息方案 B</label>
+															<div class="col-md-4 center">
+																<input id="pomodoroBWork" class="spinner" name="value">
+															</div>
+															<div class="col-md-4 center">
+																<input id="pomodoroBPlay" class="spinner" name="value">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-md-4 center">休息方案 C</label>
+															<div class="col-md-4 center">
+																<input id="pomodoroCWork" class="spinner" name="value">
+															</div>
+															<div class="col-md-4 center">
+																<input id="pomodoroCPlay" class="spinner" name="value">
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+                                    </div>
+                                    <div class="tab-pane" id="portlet_tab4">
+										<div id="portlet_tab4_note" class="note note-block note-info fade in">
+											<button type="button" class="close" onclick="$('#portlet_tab4_note').hide();"></button>
+											<h4 class="note-heading">什么是冷冻 Turkey?</h4>
+											<p> 冷冻Turkey是一个功能，将彻底锁定你出你的电脑在特定的时间。启用后，您将能够选择“冷冻 Turkey”作为调度块列表之一。 </p>
+										</div>
+										<div class="form-body">
+											<form action="#" class="form-horizontal">
+												<div class="form-group">
+													<label class="control-label col-md-6">启用冷冻 Turkey</label>
+													<div class="col-md-6">
+														<input id="frozenTurkey" type="checkbox" checked="" class="make-switch">
+													</div>
+												</div>
+											</form>
+										</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+					<div id="advanced_denied_modal">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>您需要升级到Pro使用这些功能。你现在要升级？</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+				</div>
+			</div>
+			
+			<div id="page-settings-content" class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">设置</h3>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN DASHBOARD STATS -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="portlet light bordered">
+                            <div class="portlet-title tabbable-line">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#portlet_tab1" data-toggle="tab" aria-expanded="true"> 锁定 </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#portlet_tab2" data-toggle="tab" aria-expanded="false"> 显示 </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="portlet_tab1">
+                                        <div class="form-body">
+											<form action="#" class="form-horizontal">
+												<div class="form-group">
+													<label class="control-label col-md-6">防止更改一旦启动计时器</label>
+													<div class="col-md-6">
+														<input id="settings_lockTimer" type="checkbox" checked="" class="make-switch">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-6">防止更改，直到</label>
+													<div class="col-md-4">
+														<div id="settings_datetime" class="input-group date form_datetime">
+															<input id="settings_datetime_input" type="text" size="16" class="form-control">
+															<span class="input-group-btn">
+																<button class="btn default date-set" type="button">
+																	<i class="fa fa-calendar"></i>
+																</button>
+															</span>
+														</div>
+													</div>
+												</div>
+												<!-- TODO: In version 2.2, can be reassigned for something else
+												<div class="form-group last">
+													<label class="control-label col-md-6">Enable schedule lock</label>
+													<div class="col-md-6">
+														<input id="settings_lockSchedule" type="checkbox" checked="" class="make-switch">
+													</div>
+												</div -->
+											</form>
+										</div>
+                                    </div>
+                                    <div class="tab-pane" id="portlet_tab2">
+										<div class="form-body">
+											<form action="#" class="form-horizontal">
+												<!-- TODO: In version 2.2, complete 24hr compatibility
+												<div class="form-group">
+													<label class="control-label col-md-6">Use 24 hour clocks</label>
+													<div class="col-md-6">
+														<input id="settings_24hour" type="checkbox" checked="" class="make-switch">
+													</div>
+												</div -->
+												<div class="form-group">
+													<label class="control-label col-md-6">在开头和结尾显示通知</label>
+													<div class="col-md-6">
+														<input id="settings_trayNotifyDone" type="checkbox" checked="" class="make-switch">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-6">在休息时间显示通知</label>
+													<div class="col-md-6">
+														<input id="settings_trayNotifyPlay" type="checkbox" checked="" class="make-switch">
+													</div>
+												</div>
+												<div class="form-group last">
+													<label class="control-label col-md-6">每分心分钟（仪表盘上的显示）</label>
+													<div class="col-md-6">
+														<input id="settings_minPerDistraction" name="value">
+													</div>
+												</div>
+											</form>
+										</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+					<div id="settings_extend_date">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>你确定你想延长这个时间到:<br><span id="var-settings-extend"></span>?</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="settings_timer_enable">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>你确定要防止更改时间调度有关 <span id="var-settings-enable-time"></span>?</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="settings_denied_modal">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>您需要升级到Pro使用这些功能。你现在要升级？</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+				</div>
+			</div>
+			
+			<div id="page-upgrade-content" class="page-content">
+				<!-- BEGIN PAGE HEADER-->
+				<h3 class="page-title">升级</h3>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN DASHBOARD STATS -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<!-- BEGIN PORTLET-->
+						<div class="portlet light bordered">
+							<div class="form-body">
+								<div id="portlet_upgrade_note" class="note note-block note-info fade in">
+									<button type="button" class="close" onclick="$('#portlet_upgrade_note').hide();"></button>
+									<h4 class="note-heading">感谢您的支持！</h4>
+									<p> 购买Pro版本，将有助于确保Cold Turkey仍然在积极发展！你只需要一个代码来激活Cold Turkey你个人自己所有计算机。</p>
+								</div>
+								<form class="form-horizontal">
+									<div class="form-group center">
+										<label class="control-label col-md-5">还没有激活码吗？</label>
+										<div class="col-md-2 center">
+											<button id="CT_upgrade_store" class="btn btn-success" type="button">获取激活码</button>
+										</div>
+										<div class="col-md-5">&nbsp;</div>
+									</div>
+									<div class="form-group">&nbsp;</div>
+									<div class="form-group center">
+										<label class="col-md-5 control-label">已经有激活码？</label>
+										<div class="col-md-7">
+											<div class="input-group">
+												<div class="input-icon">
+													<i class="fa fa-key"></i>
+													<input id="CT_upgrade_code" class="form-control" type="text" name="key" maxLength=24 placeholder="Activation Code">
+												</div>
+												<span class="input-group-btn">
+													<button id="upgrade_activate" class="btn btn-success move-up" type="button"> 激活</button>
+												</span>
+											</div>
+										</div>
+                                    </div>
+								</form>
+							</div>
+						</div>
+						<!-- END PORTLET-->
+					</div>
+					<div id="upgrade_pass">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>感谢您购买Cold Turkey！此安装现已全面授权。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+					<div id="upgrade_fail">
+						<form>
+							<ul> <!-- to keep left align formatting with event_delete_container -->
+								<hr>
+								<div class="portlet-body">
+									<p>您所提供的代码是不是有效的Cold Turkey激活码。</p>
+								</div>
+							</ul>
+						</form>
+						<hr>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- END CONTAINER -->
+</div>
+<!-- BEGIN JAVASCRIPT -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="assets/global/plugins/respond.min.js"></script>
+<script src="assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+
+<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<script src="assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="assets/global/scripts/import-export-list.js" type="text/javascript"></script>
+<script src="assets/global/scripts/bulk-list.js" type="text/javascript"></script>
+<script src="assets/global/scripts/md5.js" type="text/javascript"></script>
+<script src="assets/global/scripts/cryptoJS.js" type="text/javascript"></script>
+<script src="assets/global/scripts/jquery.alphanum.js" type="text/javascript"></script>
+<script src="assets/admin/layout2/scripts/layout.js" type="text/javascript"></script>
+<script src="assets/admin/pages/scripts/index.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script type="text/javascript" src="assets/calendar/scripts/date.js"></script>
+<script type='text/javascript' src='assets/calendar/scripts/jquery.weekcalendar.js'></script>
+<script type='text/javascript' src='assets/calendar/scripts/demo.js'></script>
+
+<script>
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('7 2c=K;7 3J=K;7 3M;7 1A=[["25 2H",0],["25 2H",0],["25 2H",0],["25 2H",0],["25 2H",0],["25 2H",0],["25 2H",0]];7 X=[["85","3P.17@83.17@82.17@7W.17@7S.17@7N.17@7M.17@7K.17@7I.17@7F.17@7E.17@7y.17@7w.7v@7p.17@7n.17@7l.17@7k.17@7j.17@7i.17@7h.17@78.17@76.17@6U.17@6D.17",[],"T"]];7 Q=[["T","T","K","K","T"]];7 2l=[];7 1J=[];7 P=["F","K","T","K","F","F","5"];7 Y=[["0","0"],["0","0"],["0","0"],"K"];6y(5j).96(D(){7 f;7 g=$("#J-1A");$("#J-X-S").W();$("#J-Q-S").W();$("#J-2l-S").W();$("#J-P-S").W();$("#J-Y-S").W();$("#J-1Y-S").W();$(\'#32\').V(D(){E($(\'#32\').2z(\'2q-3p-3q-o-4Z\')){$(\'#32\').2s(\'2q-3p-3q-o-4Z\');$(\'#32\').2d(\'2q-3p-3q-o-57\')}U{$(\'#32\').2s(\'2q-3p-3q-o-57\');$(\'#32\').2d(\'2q-3p-3q-o-4Z\')}});$(\'#51\').1f({3t:\'3u\',3v:\'3w\',3z:\'3A\',3B:\'3C\',1B:F}).1Z(\'37.1f\',D(e,a){E(a){P[4]="F"}U{P[4]="K"}1C(4)});$(\'#4G\').1f({3t:\'3u\',3v:\'3w\',3z:\'3A\',3B:\'3C\',1B:F}).1Z(\'37.1f\',D(e,a){E(a){P[5]="F"}U{P[5]="K"}1C(4)});$(\'#4F\').1f({3t:\'3u\',3v:\'3w\',3z:\'3A\',3B:\'3C\',1B:F}).1Z(\'37.1f\',D(e,a){E(a){P[0]="F"}U{P[0]="K"}1C(4)});$(\'#5u\').1j({5P:D(a,b){E(b.11>60){$(1t).1j("11",1);1s K}U E(b.11<1){$(1t).1j("11",60);1s K}},5R:D(a,b){P[6]=$(1t).15();1C(4)}}).1Z("2g",D(a){a.2h()});$(\'#4p\').1f({3t:\'3u\',3v:\'3w\',3z:\'3A\',3B:\'3C\',1B:K}).1Z(\'37.1f\',D(e,a){E(a){Y[3]="F"}U{Y[3]="K"}3D();1C(3)});$(\'.1j\').1j({5P:D(a,b){E(b.11>5U){$(1t).1j("11",0);1s K}U E(b.11<0){$(1t).1j("11",5U);1s K}},5R:D(a,b){1C(3)}});$(".1j").1T("2g",D(a){a.2h()});$(5j).2g(D(a){E(a.5Y==F&&(a.2n==\'6u\'||a.2n==\'6s\')){a.2h()}});$(29).1T(\'95 8U\',D(a){E(a.5Y==F){a.2h()}});$("#J-1A").1T(\'V\',D(a){E(!$("#J-1A").2z("1y")){g=$(1t);2C();2B();2E();$("#J-1A").2d("1y");$("#J-1A").1X(\'> a\').1P(\'<1D 1c="1K"></1D>\');$("#J-1A-S").2N(68,D(){45()})}});$("#J-X").1T(\'V\',D(a){E(!$("#J-X").2z("1y")){g=$(1t);2C();2B();2E();4K();$("#J-X").2d("1y");$("#J-X").1X(\'> a\').1P(\'<1D 1c="1K"></1D>\');$("#J-X-S").2N()}});$("#J-Q").1T(\'V\',D(a){E(!$("#J-Q").2z("1y")){g=$(1t);2C();2B();2E();4J();$("#J-Q").2d("1y");$("#J-Q").1X(\'> a\').1P(\'<1D 1c="1K"></1D>\');$("#J-Q-S").W().2N()}});$("#J-2l").1T(\'V\',D(c){E(!$("#J-2l").2z("1y")){2C();2B();2E();3D();$("#J-2l").2d("1y");$("#J-2l").1X(\'> a\').1P(\'<1D 1c="1K"></1D>\');$("#J-2l-S").2N();$(\'.8d-7L-7G\').7o({75:90},8S);$(\'#4M\').59("5x");E(!2c){7 d=K;$H=$("#71");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(a,b){$(\'.4D-4C-4B\').1T(\'V\',D(){$H.G(\'M\')})},M:D(){E(!d){$(g).V()}$H.G("1p");$H.W()},1l:{"2e":D(){d=F;$("#J-1Y").V();$H.G("M")},"4y":D(){$H.G("M")}}}).1d()}}});$("#J-P").1T(\'V\',D(c){E(!$("#J-P").2z("1y")){2C();2B();2E();3L();$("#J-P").2d("1y");$("#J-P").1X(\'> a\').1P(\'<1D 1c="1K"></1D>\');$("#J-P-S").2N();E(!2c){7 d=K;$H=$("#7X");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(a,b){$(\'.4D-4C-4B\').1T(\'V\',D(){$H.G(\'M\')})},M:D(){E(!d){$(g).V()}$H.G("1p");$H.W()},1l:{"2e":D(){d=F;$("#J-1Y").V();$H.G("M")},"4y":D(){$H.G("M")}}}).1d()}}});$("#J-Y").1T(\'V\',D(c){E(!$("#J-Y").2z("1y")){2C();2B();2E();47();$("#J-Y").2d("1y");$("#J-Y").1X(\'> a\').1P(\'<1D 1c="1K"></1D>\');$("#J-Y-S").2N();E(!2c){7 d=K;$H=$("#7t");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(a,b){$(\'.4D-4C-4B\').1T(\'V\',D(){$H.G(\'M\')})},M:D(){E(!d){$(g).V()}$H.G("1p");$H.W()},1l:{"2e":D(){d=F;$("#J-1Y").V();$H.G("M")},"4y":D(){$H.G("M")}}}).1d()}}});$("#J-1Y").1T(\'V\',D(a){E(!$("#J-1Y").2z("1y")){2C();2B();2E();4x();$("#J-1Y").2d("1y");$("#J-1Y").1X(\'> a\').1P(\'<1D 1c="1K"></1D>\');$("#J-1Y-S").2N()}})});D 7e(){$(".1Y").W();$("#J-Y-S").2d("7b");2c=F}D 8L(a){E(a==="8p"){2c=F;$H=$("#6F");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"8E 8i!",M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$("#J-1Y").W();3L();$("#J-1A").V();$H.G("M")}}}).1d()}U{$H=$("#7r");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$("#J-1A").V();$H.G("M")}}}).1d()}}D 7s(){$H=$("#7u");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"8j 8m",M:D(){$H.G("1p");$H.W()},1l:{"2e":D(){29.2O.8r();$H.G("M")},"8t":D(){$H.G("M")}}}).1d()}D 8D(a){$(\'#5t\').15(a)}D 8G(i,a,b){1A[i][0]=a;1A[i][1]=b}D 8V(){6x.6z();3T()}D 72(){3D()}D 73(i,a,b,c,d){7 e=1x(i);7 f=["T"];7 g=c.1O("@@");3a(j=0;j<g.1G;j++){f[j]=g[j].1O("@")}X[e]=[];X[e][0]=a;X[e][1]=b;X[e][2]=f;X[e][3]=d}D 7J(i,a,b,c,d,e){7 f=1x(i);Q[f]=[];Q[f][0]=a;Q[f][1]=b;Q[f][2]=c;Q[f][3]=d;Q[f][4]=e}D 7Q(i,a,b,c,d){7 e=a.1O("@");7 f=1E 1S();f.5V(f.3f()-f.5T()+1x(e[0]));f.53(1x(e[1]));f.5J(1x(e[2]));7 g=b.1O("@");7 h=1E 1S();h.5V(h.3f()-h.5T()+1x(g[0]));h.53(1x(g[1]));h.5J(1x(g[2]));1J.4z([i,a,b,c,d]);2l.4z({"1N":i,"8T":f,"3V":h,"1i":c,"8X":d,"94":i})}D 6t(a,b,c,d,e,f,g){Y[0][0]=a;Y[0][1]=b;Y[1][0]=c;Y[1][1]=d;Y[2][0]=e;Y[2][1]=f;Y[3]=g}D 6w(a,b,c,d,e,f,g){P[0]=a;P[1]=b;P[2]=c;P[3]=d;P[4]=e;P[5]=f;P[6]=g}D 2E(){$(\'1D[1c^="1K"]\').3i()}D 2C(){$("#J-1A-S").W();$("#J-X-S").W();$("#J-Q-S").W();$("#J-2l-S").W();$("#J-P-S").W();$("#J-Y-S").W();$("#J-1Y-S").W()}D 2B(){$("#J-1A").2s("1y");$("#J-X").2s("1y");$("#J-Q").2s("1y");$("#J-2l").2s("1y");$("#J-P").2s("1y");$("#J-Y").2s("1y");$("#J-1Y").2s("1y")}D 45(){7 b=0;1A.21(D(a){b=1x(b)+1x(a[1])});$("#7-1A-6C").1b(1x(b));$("#7-1A-6V").1b(1x(b*1x(P[6])));$("#6W").2r("5y","2D://3W.3P.17/G/4Q?4S=4X&4Y=2D://2w.17&5K=2D://2w.17/54/56-58.5r&2o="+b*1x(P[6])+"%43%5s%8u%41%3Z!&4n=6e%2y,%43%41%3Z.&4H=6p%3H%2A%52%4s%4A%4R%3G%4a%2y!&6o=I%4j%20"+b*1x(P[6])+"%5s%6Y%3H%2A%4m%4o!&4r=2D://2w.17/31/");$("#77").2r("5y","2D://3W.3P.17/G/4Q?4S=4X&4Y=2D://2w.17&5K=2D://2w.17/54/56-58.5r&2o=3I%2A&4n=6e%2y,%43%41%3Z.&4H=3I%2A%4j%6m%3G%20"+b+"%2y%4m%4o!%7f%3H%2A%52%4s%4A%4R%3G%4a%2y!&6o=3I%2A%4j%6m%3G%20"+b+"%2y%4m%4o!&4r=2D://2w.17/31/");3M.7g([{1H:1A,7q:{6l:0.6,6k:0},6j:[\'#6h\']},{1H:1A,7z:{1d:F,6l:F,7A:5,7B:"#6h",6k:3},6j:\'#7C\',7D:0}]);3M.97();3M.7H()}D 4K(){7 i=0;7 j=0;$("#7-X").6f();X.21(D(a){7 b=0;7 c=0;7 d=0;b=a[1].1O(\'@\').1G;E(a[1]=="T"){b=0}E(a[2][0]=="T"){c=0}U{c=a[2].1G}d=a[3].1O(\'@\').1G;E(a[3]=="T"){d=0}7 e=\'<1v 1c="3F-3E-6"><1v 1c="1A-80 84"><1v 1c="8c"><i 1c="2q 2q-N-8e"></i></1v><1v 1c="8f"><1v 1c="8g">\'+a[0]+\'</1v><1v 1c="8h">\'+b+\' 23, \'+c+\' 28, \'+d+\' 8o </1v></1v><a 1N="7-N-\'+i+\'" 1c="6c">\'+\'6b <i 1c="m-69-8x m-69-8z"></i></a></1v></1v>\';$("#7-X").1P(e);i++});$(".6c").1T(\'V\',D(b){E(b.48.1N.2J("^7-N-")){7 c=b.48.1N.67(-1);7 d=X[c][0];7 e=X[c][1];7 f=X[c][2];7 g=X[c][3];7 h=K;E(P[2]!="T"){1J.21(D(a){E(X[c][0]===a[3]){h=F}})}E(Q[c][3]==="F"||h){3J=F}U{3J=K}66("6b 65 61",d,e,f,g,3J,c)}})}D 4J(){1g=0;$("#7-Q").6f();X.21(D(d){7 e;7 f=\'<1v 1c="4e-4f"><4g 1c="4h-4g 3F-3E-3 O">\'+d[0]+\'</4g><1v 1c="3F-3E-4"><1v 1N="18\'+1g+\'1Q" 1c="3N-4f 1a">\'+\'<3N 4i="1b" 3O="16" 1c="4e-4h"><1D 1c="3N-4f-5Z"><27 1c="5Z 5W 1a-6I" 4i="27"><i 1c="2q 2q-4M"></i>\'+\'</27></1D></1v></1v><1v 1c="3F-3E-2 O"><2Q 1N="18\'+1g+\'2p" 1c="5S-2Q 4e-4h 5S-2Q-6X"><R 11="T">70</R>\'+\'<R 11="A">A</R><R 11="B">B</R><R 11="C">C</R></2Q></1v><1v 1c="3F-3E-3 O"><3N 1N="18\'+1g+\'" 4i="74" 4t=""></1v></1v>\';$("#7-Q").1P(f);$(\'#18\'+1g).1f({3t:\'3u\',3v:\'3w\',3z:\'3A\',3B:\'3C\'});E(Q[1g][0]!="T"&&Q[1g][3]==="F"){7 g=Q[1g][0].1O(\'@\');e=1E 1S(g[0],g[1]-1,g[2],g[3],g[4])}U{e=1E 1S()}$(\'#18\'+1g+\'1Q\').1V({5O:!0,5N:e,5M:"5I 5H 5G - 5F:5E",5B:"5A-5z"}).1Z(\'5w\',D(c){$(\'#18\'+14+\'1Q\').1H(\'1W\',2M.2X(c.1a.2F()/2a).L());E(Q[14][2]==="F"){$H=$("#7O");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"40%",1m:K,1i:"3y 3x!",1u:D(){7 a=[\'5q\',\'5p\',\'5i\',\'5h\',\'5g\',\'5f\',\'5e\',\'6r\',\'5d\',\'5c\',\'5b\',\'5a\'];7 b=c.1a.2m().L()+" "+a[c.1a.2j()]+" "+c.1a.2b().L();b=b+" 1e "+49(c.1a);$("#7-2K-55").1b(b)},M:D(){$H.G("1p");$H.W()},1l:{"2e":D(){Q[14][0]=c.1a.2b().L()+"@"+(c.1a.2j()+1).L()+"@"+c.1a.2m().L()+"@"+c.1a.2u().L()+"@"+c.1a.2t().L();7 a=c.1a.2b().L()+"-"+(c.1a.2j()+1).L()+"-"+c.1a.2m().L();a=a+" "+c.1a.2u().L()+":"+c.1a.2t().L()+":2U";$(\'#18\'+14+\'1Q\').1V(\'3s\',a);E(P[0]==="F"){$(\'#18\'+14+\'1Q\').1V(\'3r\',a)}1C(1);$H.G("M")},"25":D(){7 a=1R.4W().L()+"-"+(1R.4V()+1).L()+"-"+1R.3f().L();a=a+" "+1R.4U().L()+":"+1R.4T().L()+":2U";$(\'#18\'+14+\'1Q\').1V(\'3s\',a);$(\'#18\'+14+\'1Q\').1H(\'1W\',2M.2X(1R.2F()/2a).L());$H.G("M")}}}).1d()}}).1Z(\'1d\',D(){14=$(1t).2r(\'1N\').2J(/\\d/)[0];1R=2x.2R((1x($(\'#18\'+14+\'1Q\').1H(\'1W\')))).44()});E(Q[1g][0]!="T"){E(Q[1g][3]!="F"){7 g=Q[1g][0].1O(\'@\');e=1E 1S(g[0],g[1]-1,g[2],g[3],g[4])}$(\'#18\'+1g+\'1Q\').1V(\'3s\',e);$(\'#18\'+1g+\'1Q\').1H(\'1W\',2M.2X(e.2F()/2a).L())}1g++});1g=0;Q.21(D(g){$(\'#18\'+1g+\'2p\').15(g[1]);$(\'#18\'+1g+\'2p\').1Z(\'3o\',D(){14=$(1t).2r(\'1N\').2J(/\\d/)[0];E(Q[14][3]==="K"){E(Q[14][2]==="F"){Q[14][1]=$(\'#18\'+14+\'2p\').15();1C(1)}}});E(g[2]==="F"){$(\'#18\'+1g).1f(\'1B\',F);E(g[3]==="F"){$(\'#18\'+1g).1f(\'36\',F);$(\'#18\'+1g+\'2p\').2r(\'36\',F)}}U{$(\'#18\'+1g).1f(\'1B\',K);$(\'#18\'+1g+\'2p\').2r(\'36\',K)}$(\'#18\'+1g).1Z(\'37.1f\',D(e,f){14=$(1t).2r(\'1N\').2J(/\\d/)[0];E(f){E($(\'#18\'+14+\'1Q\').1H(\'1W\')>0){$H=$("#6v");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"40%",1m:K,1i:"3y 3x!",1u:D(){7 a=2x.2R(1E 1S()/2a);7 b=1E 1S(1x($(\'#18\'+14+\'1Q\').1H(\'1W\'))*2a);7 c=1E 1S(b.2F()+b.5k()*5l);7 d=2x(c);7 e=d.5m(a,F);$(\'#7-2K-1U-2o\').1b(X[14][0]);$(\'#7-2K-1U-5n\').1b(e);E(!2c){$(\'#7-2K-1U-6A\').6B(\'5o\',\'\');$(\'#7-2K-1U-31\').26(\'4t\',F)}$(\'#7-2K-1U-31\').6E();$("#4P-27").1b("2e")},M:D(){$H.G("1p");$H.W()},1l:[{1b:"25",V:D(){$(\'#18\'+14).1f(\'1B\',K);$H.G("M")}},{1b:"2e",V:D(){7 a;7 b=1E 1S();7 c=2x.2R((1x($(\'#18\'+14+\'1Q\').1H(\'1W\')))).44();Q[14][0]=c.2b().L()+"@"+(c.2j()+1).L()+"@"+c.2m().L()+"@"+c.2u().L()+"@"+c.2t().L();Q[14][1]=$(\'#18\'+14+\'2p\').15();Q[14][2]="F";Q[14][4]=b.4W().L()+"@"+(b.4V()+1).L()+"@"+b.3f().L()+"@"+b.4U().L()+"@"+b.4T().L();$(\'#18\'+14).1f(\'1B\',F);a=c.2b().L()+"-"+(c.2j()+1).L()+"-"+c.2m().L();a=a+" "+c.2u().L()+":"+c.2t().L()+":2U";E(P[0]==="F"){Q[14][3]="F";$(\'#18\'+14).1f(\'36\',F);$(\'#18\'+14+\'2p\').2r(\'36\',F);$(\'#18\'+14+\'1Q\').1V(\'3r\',a)}E($(\'#7-2K-1U-31\').6G(\':4t\')){$("#4P-27").1b("6H...");7 d=29.1u(\'4O://3W.3P.17/G/4Q?4S=4X&5o=6J&2o=3I%2A&4H=6p%3H%2A%52%4s%4A%4R%3G%4a%2y!%6K%2y,%43%41%3Z.&4n=6L%6M&4Y=4O://2w.17/&4r=4O://2w.17/31/\',\'\',\'1h=6N,6O=68\');7 e=29.6P(D(){E(d.6Q!==K){29.6R(e);1C(1);$H.G("M")}},6S)}U{1C(1);$H.G("M")}},1N:\'4P-27\'}]}).1d()}U{$H=$("#6T");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"40%",1m:K,1i:"1F!",M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$(\'#18\'+14).1f(\'1B\',K);$H.G("M")}}}).1d()}}U{E(Q[14][3]=="K"){Q[14][0]="T";Q[14][1]="T";Q[14][2]="K";Q[14][4]="T";1C(1)}}});E(!2c){$(\'#18\'+1g+\'2p\').2r(\'36\',F)}1g++})}D 3D(){7 b="";$.2i(X,D(i,a){b=b+\'<R 11="\'+a[0]+\'">\'+a[0]+\'</R>\'});$(\'#1J-4N\').42(b);E(Y[3]==="F"&&$("#1J-4N R[11=\'3Y 3X\']").1G<1){$(\'#1J-4N\').1P(\'<R 1N="5v" 11="3Y 3X">3Y 3X</R>\')}U{$(\'#5v\').3i()}6Z()}D 47(){E(Y[3]==="F"){$(\'#4p\').1f(\'1B\',F,F)}U{$(\'#4p\').1f(\'1B\',K,F)}$(\'#3n\').15(Y[0][0]);$(\'#3m\').15(Y[0][1]);$(\'#3l\').15(Y[1][0]);$(\'#3k\').15(Y[1][1]);$(\'#3j\').15(Y[2][0]);$(\'#3h\').15(Y[2][1]);$(\'#3n\').1j("1U");$(\'#3m\').1j("1U");$(\'#3l\').1j("1U");$(\'#3k\').1j("1U");$(\'#3j\').1j("1U");$(\'#3h\').1j("1U");Q.21(D(a){E(a[1]==="A"&&a[2]=="F"&&a[3]=="F"){$(\'#3n\').1j("22");$(\'#3m\').1j("22")}E(a[1]==="B"&&a[2]=="F"&&a[3]=="F"){$(\'#3l\').1j("22");$(\'#3k\').1j("22")}E(a[1]==="C"&&a[2]=="F"&&a[3]=="F"){$(\'#3j\').1j("22");$(\'#3h\').1j("22")}});E(P[2]!="T"){1J.21(D(a){E(a[4]==="A"){$(\'#3n\').1j("22");$(\'#3m\').1j("22")}E(a[4]==="B"){$(\'#3l\').1j("22");$(\'#3k\').1j("22")}E(a[4]==="C"){$(\'#3j\').1j("22");$(\'#3h\').1j("22")}})}}D 3L(){7 g;E(P[0]==="F"){$(\'#4F\').1f(\'1B\',F,F)}U{$(\'#4F\').1f(\'1B\',K,F)}E(P[3]==="F"){$(\'#5C\').1f(\'1B\',F,F)}U{$(\'#5C\').1f(\'1B\',K,F)}E(P[4]==="F"){$(\'#51\').1f(\'1B\',F,F)}U{$(\'#51\').1f(\'1B\',K,F)}E(P[5]==="F"){$(\'#4G\').1f(\'1B\',F,F)}U{$(\'#4G\').1f(\'1B\',K,F)}$(\'#5u\').15(P[6]);E(P[2]!="T"){7 h=P[2].1O(\'@\');g=1E 1S(h[0],h[1]-1,h[2],h[3],h[4])}U{g=1E 1S()}E(!$("#1M").1H(\'1V\')){$(\'#1M\').1V({5O:!0,5N:g,5M:"5G 5H 5I - 5F:5E",5B:"5A-5z"});$(\'#1M\').1Z(\'5w\',D(f){$(\'#1M\').1H(\'1W\',2M.2X(f.1a.2F()/2a).L());E(P[2]!="T"){$H=$("#79");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"40%",1m:K,1i:"3y 3x!",1u:D(){7 a=[\'5q\',\'5p\',\'5i\',\'5h\',\'5g\',\'5f\',\'5e\',\'6r\',\'5d\',\'5c\',\'5b\',\'5a\'];7 b=f.1a.2m().L()+" "+a[f.1a.2j()]+" "+f.1a.2b().L();b=b+" 1e "+49(f.1a);$("#7-P-55").1b(b)},M:D(){$H.G("1p");$H.W()},1l:{"2e":D(){P[2]=f.1a.2b().L()+"@"+(f.1a.2j()+1).L()+"@"+f.1a.2m().L()+"@"+f.1a.2u().L()+"@"+f.1a.2t().L();7 a=f.1a.2b().L()+"-"+(f.1a.2j()+1).L()+"-"+f.1a.2m().L();a=a+" "+f.1a.2u().L()+":"+f.1a.2t().L()+":2U";$(\'#1M\').1V(\'3r\',a);1C(4);$H.G("M")},"25":D(){7 a=1R.4W().L()+"-"+(1R.4V()+1).L()+"-"+1R.3f().L();a=a+" "+1R.4U().L()+":"+1R.4T().L()+":2U";$(\'#1M\').1V(\'3s\',a);$(\'#1M\').1H(\'1W\',2M.2X(1R.2F()/2a).L());$H.G("M")}}}).1d()}U{$H=$("#7a");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"40%",1m:K,1i:"3y 3x!",1u:D(){7 a=2x.2R(1E 1S()/2a);7 b=1E 1S(1x($(\'#1M\').1H(\'1W\'))*2a);7 c=1E 1S(b.2F()+b.5k()*5l);7 d=2x(c);7 e=d.5m(a,F);$(\'#7-P-1U-5n\').1b(e)},M:D(){$H.G("1p");$H.W()},1l:{"2e":D(){7 a;7 b=2x.2R((1x($(\'#1M\').1H(\'1W\')))).44();P[2]=b.2b().L()+"@"+(b.2j()+1).L()+"@"+b.2m().L()+"@"+b.2u().L()+"@"+b.2t().L();a=b.2b().L()+"-"+(b.2j()+1).L()+"-"+b.2m().L();a=a+" "+b.2u().L()+":"+b.2t().L()+":2U";$(\'#1M\').1V(\'3r\',a);1C(4);$H.G("M")},"25":D(){$(\'#5D\').15(\'\');$H.G("M")}}}).1d()}}).1Z(\'1d\',D(){1R=2x.2R((1x($(\'#1M\').1H(\'1W\')))).44()})}U{$(\'#1M\').1V(\'3r\',g)}$(\'#1M\').1H(\'1W\',2M.2X(g.2F()/2a).L());E(P[2]!="T"){$(\'#1M\').1V(\'3s\',g)}U{$(\'#5D\').15(\'\')}}D 4x(){$(\'#7c\').V(D(e){29.2O.7d($(\'#5t\').15())})}D 3T(){45();4K();4J();3D();47();3L();4x()}D 66(j,l,m,n,p,q,r){7 s=\'T\';E(2I j===\'2L\'){j=\'7m 65 61\'}E(2I l===\'2L\'){l=\'\'}U{s=l}E(2I m===\'2L\'){m=\'T\'}E(2I n===\'2L\'){n=[[\'T\',\'T\']]}E(2I p===\'2L\'){p=\'T\'}E(2I q===\'2L\'){q=K}E(2I r===\'2L\'){r=X.1G}7 t=m.1O(\'@\');7 u=n;7 v=p.1O(\'@\');7 w=\'\';7 x=\'\';7 y=\'\';7 z=0;E(r>5){$H=$("#5L");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$H.G("M")}}}).1d();1s}t.21(D(a){E(a.35(\'T\')==0){w=\'\'}U{w=w+\'<R 11="\'+a+\'">\'+a+\'</R>\'}});u.21(D(a){E(a[0].35(\'T\')==0){x=\'\'}U{x=x+\'<R 11="\'+a[1]+\'">\'+a[0]+\'</R>\'}});v.21(D(a){E(a.35(\'T\')==0){y=\'\'}U{y=y+\'<R 11="\'+a+\'">\'+a+\'</R>\'}});$2G=$("#7x");$2G.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"50%",1m:K,1i:j,1u:D(){$("#7-2k-3U").4w("V");E(!2c){$("#7-2k-4v").1Z(\'V\',D(e){e.2h();$H=$("#4u");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$("#7-2k-3U").4w("V");5Q(D(){$("#7-N-2P-1z").3S()},0);$H.G("M")}}}).1d()});$("#7-2k-4q").1Z(\'V\',D(e){e.2h();$H=$("#4u");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$("#7-2k-3U").4w("V");5Q(D(){$("#7-N-2P-1z").3S()},0);$H.G("M")}}}).1d()})}},M:D(){$2G.G("1p");$2G.W();$("#7-2k-4v").24("V");$("#7-2k-4q").24("V");$("#7-N-2o").24("2g");$("#7-N-2P-1z").24("3R");$("#7-N-2v-1z-1b").24("V");$("#7-N-2v-1z-27").24("3o");$("#7-N-2v-1z-27").15("");$("#7-N-3g-1z").24("3R");$("#7-N-23").24("2g");$("#7-N-28").24("2g");$("#7-N-2f").24("2g");$(".2S-N").24("V");$("#2S-3Q").24("3o");$(\'#4M\').59("5x")},1l:{"保存":{1N:"7P",1b:"保存",V:D(){E(r<6&&r>=0){7 b=$("#7-N-2o").15();7 c=\'\';7 d=[];7 e=\'\';7 f=$("#7-N-23 R");f.2i(D(i,o){c=c+\'@\'+$(o).15()});c=c.3e(/^@|@$/g,\'\');E(!c){c=\'T\'}f=$("#7-N-28 R");f.2i(D(i,o){d.4z([$(o).1b(),$(o).15()])});f=$("#7-N-2f R");f.2i(D(i,o){e=e+\'@\'+$(o).15()});7 g=K;e=e.3e(/^@|@$/g,\'\');E(!e){e=\'T\'}E(!b){b=\'7R\'}E(b=="3Y 3X"){g=F}E(s===\'T\'||s!=b){X.21(D(a){E(a[0]===b){g=F}})}E(g){$1L=$("#7T");$1L.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$1L.G("1p");$1L.W()},1l:{"1I":D(){$1L.G("M")}}}).1d();1s K}E(s!="T"&&s!=b){7 h=K;1J.21(D(a){E(a[3]===X[r][0]){h=F}});E(h){$1L=$("#7U");$1L.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$1L.G("1p");$1L.W()},1l:{"1I":D(){$1L.G("M")}}}).1d();1s K}}X[r]=[];X[r][0]=b;X[r][1]=c;X[r][2]=d;X[r][3]=e;E(!Q[r]){Q[r]=["T","T","K","K","T"]}3T();1C(0);1C(1);$2G.G("M")}U{$H=$("#5L");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"40%",1m:K,1i:"1F!",1u:D(){},M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$H.G("M");$2G.G("M")}}}).1d()}}},"删除":{1N:"7V",1b:"删除",V:D(){E(q){$1w=$("#4l");$1w.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$1w.G("1p");$1w.W()},1l:{"1I":D(){$1w.G("M")}}}).1d()}U{7 b=K;1J.21(D(a){E(a[3]===X[r][0]){b=F}});E(b){$1L=$("#7Y");$1L.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$1L.G("1p");$1L.W()},1l:{"1I":D(){$1L.G("M")}}}).1d()}U{$1w=$("#7Z");$1w.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"3y 3x!",1u:D(){},M:D(){$1w.G("1p");$1w.W()},1l:{"2e":D(){X.5X(r,1);Q.5X(r,1);1C(0);1C(1);3T();$1w.G("M");$2G.G("M")},"25":D(){$1w.G("M")}}}).1d()}}}},"取消":D(){$2G.G("M")}}}).1d();$("#7-N-2P-1z").15(\'\');$("#7-N-2v-1z").15(\'\');$("#7-N-3g-1z").15(\'\');$("#7-N-2o").15(l);$("#7-N-23").42(w);$("#7-N-28").42(x);$("#7-N-2f").42(y);81{7 A=$("#7-N-23 R");7 B=A.2Z(D(2Y,o){1s{t:$(o).1b(),v:o.11}}).2V();B.2T(D(a,b){1s a.t>b.t?1:a.t<b.t?-1:0});A.2i(D(i,o){o.11=B[i].v;$(o).1b(B[i].t)});A=$("#7-N-28 R");7 B=A.2Z(D(2Y,o){1s{t:$(o).1b(),v:o.11}}).2V();B.2T(D(a,b){1s a.t>b.t?1:a.t<b.t?-1:0});A.2i(D(i,o){o.11=B[i].v;$(o).1b(B[i].t)});A=$("#7-N-2f R");7 B=A.2Z(D(2Y,o){1s{t:$(o).1b(),v:o.11}}).2V();B.2T(D(a,b){1s a.t>b.t?1:a.t<b.t?-1:0});A.2i(D(i,o){o.11=B[i].v;$(o).1b(B[i].t)})}86(87){}$("#7-2k-3U").V(D(){z=0});$("#7-2k-4v").V(D(){z=1});$("#7-2k-4q").V(D(){z=2});$("#7-N-2o").88({89:"@",8a:".,!#$%^&*()[]{}|<>?+-=;\'",8b:19});$("#7-N-2P-1z").3R(D(e){E(e.2n==13){7 c=4k($("#7-N-2P-1z").15()).4d();E(c.35(\'T\')==0){}U E(c.35(\'62\')==0){e.2h();$H=$("#4u");$H.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$H.G("1p");$H.W()},1l:{"1I":D(){$H.G("M")}}}).1d()}U{E($("#7-N-23 R[11=\'"+c+"\']").1G<1){$("#7-N-23").1P(\'<R 11="\'+c+\'">\'+c+\'</R>\');7 d=$("#7-N-23 R");7 f=d.2Z(D(2Y,o){1s{t:$(o).1b(),v:o.11}}).2V();f.2T(D(a,b){1s a.t>b.t?1:a.t<b.t?-1:0});d.2i(D(i,o){o.11=f[i].v;$(o).1b(f[i].t)});$("#7-N-23 R[11=\'"+c+"\']").26(\'1K\',F)}U{$(\'#7-N-23\').15(\'\');$("#7-N-23 R[11=\'"+c+"\']").26(\'1K\',F)}}$("#7-N-2P-1z").3S().2Q()}});$("#7-N-2v-1z-1b").V(D(e){7 a=$("#7-N-2v-1z-27");a.63(a=a.64(F));$("#7-N-2v-1z-27").V()});$("#7-N-2v-1z-27").3o(D(){7 h=4c.4b.67||4c.4b.8k||4c.4b.8l,2W=1t.8n[0],3d=2W.2o,3c=8q,6a=2M.8s(2W.3O/3c),3K=0,4L=1E 8v.8w(),6d=D(e){4L.1P(e.48.8y);3K++;E(3K<6a){4I()}U{7 c=4L.3V().L(8A.8B.8C);E($("#7-N-28 R[11=\'"+c+"\']").1G<1){E((3d.2J("\\.4E$")==".4E"||3d.2J("\\.6g$")==".6g")&&!3d.4d().2J("8F.4E$")){$("#7-N-28").1P(\'<R 11="\'+c+\'">\'+3d+\'</R>\');7 d=$("#7-N-28 R");7 f=d.2Z(D(2Y,o){1s{t:$(o).1b(),v:o.11}}).2V();f.2T(D(a,b){1s a.t>b.t?1:a.t<b.t?-1:0});d.2i(D(k,o){o.11=f[k].v;$(o).1b(f[k].t)})}U{7 g=$("#8H");g.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"40%",1m:K,1i:"8I 8J\'t 8K...",1u:D(){},M:D(){g.G("1p");g.W()},1l:{"1I":D(){g.G("M")}}}).1d()}}U{$(\'#7-N-28\').15(\'\');$("#7-N-28 R[11=\'"+c+"\']").26(\'1K\',F)}}},6i=D(){};D 4I(){7 a=1E 8M();a.8N=6d;a.8O=6i;7 b=3K*3c,3V=((b+3c)>=2W.3O)?2W.3O:b+3c;a.8P(h.8Q(2W,b,3V))};4I()});$("#7-N-3g-1z").3R(D(e){E(e.2n==13){7 c=4k($("#7-N-3g-1z").15()).4d();E(c.35(\'T\')!=0&&!q){E($("#7-N-2f R[11=\'"+c+"\']").1G<1){$("#7-N-2f").1P(\'<R 11="\'+c+\'">\'+c+\'</R>\');7 d=$("#7-N-2f R");7 f=d.2Z(D(2Y,o){1s{t:$(o).1b(),v:o.11}}).2V();f.2T(D(a,b){1s a.t>b.t?1:a.t<b.t?-1:0});d.2i(D(i,o){o.11=f[i].v;$(o).1b(f[i].t)})}U{$(\'#7-N-2f\').15(\'\');$("#7-N-2f R[11=\'"+c+"\']").26(\'1K\',F)}}$("#7-N-3g-1z").3S().2Q()}});$(".2S-N").V(D(){7 a=$("#2S-3Q");a.63(a=a.64(F));$("#2S-3Q").V()});$("#2S-3Q").3o(D(){8R(z)});$("#7-N-23").2g(D(e){E(e.2n==8||e.2n==46){E(!q){7 a=$(1t).26(\'34\');7 b=$(1t).1X(\'R\').1G-2;$(1t).1X(\'R:1K\').3i();$(1t).26(\'34\',(a<b)?a:b);e.2h()}U{$1w=$("#4l");$1w.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$1w.G("1p");$1w.W()},1l:{"1I":D(){$1w.G("M")}}}).1d()}}});$("#7-N-28").2g(D(e){E(e.2n==8||e.2n==46){E(!q){7 a=$(1t).26(\'34\');7 b=$(1t).1X(\'R\').1G-2;$(1t).1X(\'R:1K\').3i();$(1t).26(\'34\',(a<b)?a:b);e.2h()}U{$1w=$("#4l");$1w.G({1k:F,1n:{1q:"O",1e:"O",1r:$(".J-S-1o")},1h:"30%",1m:K,1i:"1F!",1u:D(){},M:D(){$1w.G("1p");$1w.W()},1l:{"1I":D(){$1w.G("M")}}}).1d()}}});$("#7-N-2f").2g(D(e){E(e.2n==8||e.2n==46){7 a=$(1t).26(\'34\');7 b=$(1t).1X(\'R\').1G-2;$(1t).1X(\'R:1K\').3i();$(1t).26(\'34\',(a<b)?a:b);e.2h()}})}D 4k(a){7 b;E(a.3b("://")>-1){b=a.1O(\'/\')[2]}U{b=a.1O(\'/\')[0]}b=b.1O(\':\')[0];E(b.3b("3W.")==0){b=b.8W(4)}E(b.3b(\'.\')<1||b.3b(\' \')!=-1){1s"T"}E(/^[*a-6n-8Y-9.\\-]+[*a-6n-Z]$/.8Z(b)==K){1s"T"}E(!2c&&(b.3b(\'*\')!=-1)){1s"62"}1s b}D 49(a){7 b=a.2u();7 c=a.2t();7 d=b>=12?\'91\':\'92\';b=b%12;b=b?b:12;c=c<10?\'0\'+c:c;7 e=b+\':\'+c+\' \'+d;1s e}D 1C(a){93(a){39 0:7 b=\'\';3a(i=0;i<X.1G;i++){7 c=["T"];3a(j=0;j<X[i][2].1G;j++){c[j]=X[i][2][j].6q("@")}b=b+X[i][0]+"@@@"+X[i][1]+"@@@"+c.6q("@@")+"@@@"+X[i][3]+"@@@@"}b=b.3e(/^@@@@|@@@@$/g,\'\');E(b===\'\'){b="T"}29.2O.38(0,b);33;39 1:7 b=\'\';3a(i=0;i<Q.1G;i++){b=b+Q[i][0]+"@@@"+Q[i][1]+"@@@"+Q[i][2]+"@@@"+Q[i][3]+"@@@"+Q[i][4]+"@@@@"}b=b.3e(/^@@@@|@@@@$/g,\'\');E(b===\'\'){b="T"}29.2O.38(1,b);33;39 2:7 b=\'\';3a(i=0;i<1J.1G;i++){b=b+1J[i][0]+"@@@"+1J[i][1]+"@@@"+1J[i][2]+"@@@"+1J[i][3]+"@@@"+1J[i][4]+"@@@@"}b=b.3e(/^@@@@|@@@@$/g,\'\');E(b===\'\'){b="T"}29.2O.38(2,b);33;39 3:7 b=\'\';Y[0][0]=$(\'#3n\').15();Y[0][1]=$(\'#3m\').15();Y[1][0]=$(\'#3l\').15();Y[1][1]=$(\'#3k\').15();Y[2][0]=$(\'#3j\').15();Y[2][1]=$(\'#3h\').15();b=Y[0][0]+"@@@@"+Y[0][1]+"@@@@"+Y[1][0]+"@@@@"+Y[1][1]+"@@@@"+Y[2][0]+"@@@@"+Y[2][1]+"@@@@"+Y[3];29.2O.38(3,b);33;39 4:7 b=\'\';b=P[0]+"@@@@"+P[1]+"@@@@"+P[2]+"@@@@"+P[3]+"@@@@"+P[4]+"@@@@"+P[5]+"@@@@"+P[6];29.2O.38(4,b);33;5W:33}}',62,566,'|||||||var||||||||||||||||||||||||||||||||function|if|true|dialog|dialogFullContent||page|false|toString|close|list|center|settings|timers|option|content|null|else|click|hide|lists|advanced|||value|||listSelector|val||com|timer_||date|text|class|show|at|bootstrapSwitch|listCounter|width|title|spinner|modal|buttons|draggable|position|wrapper|destroy|my|of|return|this|open|div|dialogDeleteContent|parseInt|active|add|dashboard|state|compileSaveConfig|span|new|Sorry|length|data|OK|scheduler|selected|dialogDeleteContentError|settings_datetime|id|split|append|_datetime|oldDate|Date|bind|enable|datetimepicker|datetime|find|upgrade|on||forEach|disable|sites|off|No|prop|button|apps|window|1000|getUTCFullYear|verIsPro|addClass|Yes|excepts|keydown|preventDefault|each|getUTCMonth|edit|schedule|getUTCDate|which|name|_pomodoro|fa|attr|removeClass|getUTCMinutes|getUTCHours|app|getcoldturkey|moment|20distractions|hasClass|20Turkey|unselectMenu|hideAllContent|http|hideSelected|getTime|dialogContent|Data|typeof|match|timer|undefined|Math|fadeIn|external|site|select|unix|import|sort|00|get|file|round|_|map||share|CT_maxButton|break|selectedIndex|localeCompare|disabled|switchChange|saveConfig|case|for|indexOf|chunkSize|fileName|replace|getDate|except|pomodoroCPlay|remove|pomodoroCWork|pomodoroBPlay|pomodoroBWork|pomodoroAPlay|pomodoroAWork|change|caret|square|setStartDate|update|onText|ON|offText|OFF|Chance|Last|onColor|primary|offColor|danger|updateSchedule|md|col|20from|20Cold|Cold|locked|currentChunk|updateSettings|dashboardChart|input|size|facebook|frame|keypress|focus|updateVariables|tab0|end|www|Turkey|Frozen|20time||20free|html|20more|toDate|updateDashboard||updateAdvanced|target|formatAMPM|20online|prototype|File|toLowerCase|form|group|label|control|type|20saved|extractDomain|list_delete_error_container|20this|caption|20week|frozenTurkey|tab2|redirect_uri|20temporarily|checked|list_upgrade|tab1|trigger|updateUpgrade|Back|push|20save|overlay|widget|ui|exe|settings_lockTimer|settings_trayNotifyPlay|description|loadNext|updateTimers|updateLists|spark|calendar|titles|https|loading|feed|20yourself|app_id|getMinutes|getHours|getMonth|getFullYear|135689646498663|link|up||settings_trayNotifyDone|20to|setHours|images|extend|logo|down|fb|weekCalendar|Dec|Nov|Oct|Sep|Jul|Jun|May|Apr|Mar|document|getTimezoneOffset|60000|from|time|display|Feb|Jan|png|20minutes|CT_upgrade_code|settings_minPerDistraction|frozenTurkeySwitch|changeDate|removeUnsavedEvents|href|left|bottom|pickerPosition|settings_24hour|settings_datetime_input|ii|hh|dd|MM|yyyy|setMinutes|picture|list_full_container|format|startDate|autoclose|spin|setTimeout|stop|bs|getDay|1440|setDate|default|splice|ctrlKey|btn||List|pro|replaceWith|clone|Block|editList|slice|400|icon|chunks|Edit|more|frOnload|Fewer|empty|EXE|7ba0bb|frOnerror|color|lineWidth|fill|20me|zA|message|Use|join|Aug|109|CT_advancedSetData|107|timer_enable|CT_settingsSetData|Index|jQuery|initCharts|warning|css|total|delicious|blur|upgrade_pass|is|Loading|set|popup|20Fewer|Free|20Download|500|height|setInterval|closed|clearInterval|200|timer_invalid|orkut|minutes|shareMinutes|hidden|20using|drawSchedule|None|schedule_denied_modal|CT_scheduleDraw|CT_listsSetData|checkbox|scrollTop|tagged|shareBlocked|myspace|settings_extend_date|settings_timer_enable|last|upgrade_activate|checkCode|CT_setPro|20Use|setData|stumbleupon|deviantart|flickr|instagram|pinterest|New|tumblr|animate|reddit|lines|upgrade_fail|CT_updateNeeded|advanced_denied_modal|update_needed|org|4chan|list_edit_container|9gag|points|radius|fillColor|fff|shadowSize|amazon|ebay|grid|draw|mashable|CT_timersSetData|buzzfeed|scrollable|vimeo|youtube|timer_extend_date|CT_listSave|CT_scheduleSetData|Untitled|imgur|list_name_error_container|list_name_schedule_error_container|CT_listDelete|collegehumor|settings_denied_modal|list_delete_schedule_error_container|list_delete_container|stat|try|netflix|twitter|blue|Distractions|catch|err|alphanum|disallow|allow|maxLength|visual|wc|alt|details|number|desc|You|Update|mozSlice|webkitSlice|Available|files|exceptions|pass|2097152|updateNow|ceil|Later|20of|SparkMD5|ArrayBuffer|swapright|result|white|CryptoJS|enc|Hex|CT_upgrade_paste|Thank|ctservice|CT_dashboardSetChartData|notexe_container|This|isn|allowed|CT_upgrade|FileReader|onload|onerror|readAsArrayBuffer|call|importList|600|start|DOMMouseScroll|CT_dashboardDraw|substring|pomodoro|Z0|test|300|pm|am|switch|schedulerId|mousewheel|ready|setupGrid'.split('|'),0,{}))
+</script>
+</body>
+<!-- END BODY -->
+</html>

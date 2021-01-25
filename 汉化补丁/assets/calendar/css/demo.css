@@ -1,0 +1,150 @@
+
+.ui-widget {
+	font-size: 1em;	
+}
+
+#update_needed {
+	display: none;
+}
+
+#event_edit_container {
+	display: none;
+}
+
+#list_edit_container {
+	display: none;
+}
+
+#list_delete_container {
+	display: none;
+}
+
+#list_delete_error_container {
+	display: none;
+}
+
+#list_delete_schedule_error_container{
+	display: none;
+}
+
+#list_name_schedule_error_container{
+	display: none;
+}
+
+#list_name_error_container{
+	display: none;
+}
+
+#notexe_container {
+	display: none;
+}
+
+#list_full_container {
+	display: none;
+}
+
+#list_upgrade {
+	display: none;
+}
+
+#timer_extend_date {
+	display: none;
+}
+
+#timer_enable {
+	display: none;
+}
+
+#timer_invalid {
+	display: none;
+}
+
+#scheduler_extend_date {
+	display: none;
+}
+
+#schedule_delete_error_container {
+	display: none;	
+}
+
+#schedule_denied_modal {
+	display: none;
+}
+
+#settings_extend_date {
+	display: none;
+}
+
+#settings_timer_enable {
+	display: none;
+}
+
+#settings_denied_modal {
+	display: none;
+}
+
+#advanced_denied_modal {
+	display: none;
+}
+
+#upgrade_fail {
+	display: none;
+}
+
+#upgrade_pass {
+	display: none;
+}
+
+
+/*
+#about_button_container {
+	position: absolute;
+	top: 0em;
+	right: 0em;	
+	padding: 0.5em 2em;
+	background: #ddf;
+	border: 1px solid #bbd;
+	width: 25em;
+	text-align: center;
+}
+*/
+
+#event_edit_container label {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+#list_edit_container label {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+form ul {
+	padding: 0.3em;
+}
+
+select, input[type='text'], textarea {
+	width: 250px;
+	padding: 4px;
+}
+
+ul.formatted,ol.formatted {
+	display: block;
+	margin: 1em 0.5em;
+}
+
+ul.formatted li,ol.formatted li {
+	margin: 5px 30px;
+	display: auto;
+}
+
+ul.formatted li {
+	list-style-type: disc;
+}
+
+ol.formatted li {
+	list-style-type: decimal;
+}
+#switcher{float:left;}
