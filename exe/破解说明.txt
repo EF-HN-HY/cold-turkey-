@@ -1,0 +1,7 @@
+1.安装软件Cold_Turkey_Installer.ext
+
+2.Cold Turkey_kengen.exe 复制到软件的安装目录，默认在 "C:\Program Files (x86)\Cold Turkey\Cold Turkey.exe" 或者 "C:\Program Files\Cold Turkey\Cold Turkey.exe" 
+
+3.打开Cold Turkey_kengen.exe 随便输入6位数字进行激活。
+
+4.打开原版 Cold Turkey.exe 使用即可
