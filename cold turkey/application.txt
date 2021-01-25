@@ -1,0 +1,4 @@
+# 炉石
+G:\Battle.net\Hearthstone\Hearthstone.exe
+# 炉石
+Hearthstone.exe
